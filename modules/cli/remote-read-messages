@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p /var/log/remote
+
+reset
+java $_options -jar target/cli-0.1-SNAPSHOT-shaded.jar -OperatingMode Read -NodeId $(./remote-get-nodeid) -AmazonAccessKeyId AKIAJ47KDPNKYBYZHVZA -AmazonSecretAccessKey "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"

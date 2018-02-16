@@ -1,0 +1,32 @@
+package com.walterjwhite.remote.api.model;
+
+import com.walterjwhite.datastore.api.model.entity.AbstractNamedEntity;
+import com.walterjwhite.remote.api.enumeration.ProviderType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Entity
+public class Provider extends AbstractNamedEntity {
+  @Column
+  @Enumerated(EnumType.STRING)
+  protected ProviderType providerType;
+
+  public Provider(String moduleClassName, ProviderType providerType) {
+    super(moduleClassName);
+    this.providerType = providerType;
+  }
+
+  public Provider() {
+    super();
+  }
+
+  public ProviderType getProviderType() {
+    return providerType;
+  }
+
+  public void setProviderType(ProviderType providerType) {
+    this.providerType = providerType;
+  }
+}

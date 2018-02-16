@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -rf /tmp/{local-file-storage-cache,local-message-processor,messages}
+java -jar target/cli-0.1-SNAPSHOT-shaded.jar
+

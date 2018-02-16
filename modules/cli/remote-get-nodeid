@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat /proc/cmdline | tr ' ' '\n' | grep crypt_root | sed -e "s/.*\///"
