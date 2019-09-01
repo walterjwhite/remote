@@ -1,39 +1,42 @@
 package com.walterjwhite.remote.modules.cli.handler;
 
-import com.walterjwhite.google.guice.cli.property.CommandLineHandlerShutdownTimeout;
-import com.walterjwhite.google.guice.cli.service.AbstractCommandLineHandler;
-import com.walterjwhite.google.guice.property.property.Property;
+import com.walterjwhite.datastore.api.repository.Repository;
+import com.walterjwhite.inject.cli.property.CommandLineHandlerShutdownTimeout;
+import com.walterjwhite.inject.cli.service.AbstractCommandLineHandler;
+import com.walterjwhite.property.impl.annotation.Property;
 import com.walterjwhite.remote.api.model.message.Message;
-import com.walterjwhite.remote.api.service.MessageRepository;
+import com.walterjwhite.remote.api.repository.FindMessagesByTime;
 import com.walterjwhite.remote.impl.plugins.heartbeat.HeartbeatMessage;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * List all active nodes within the past 5 minutes. IE. checks for heartbeats less than 5 minutes
  * old.
  */
 public class ListNodes extends AbstractCommandLineHandler {
-  private static final Logger LOGGER = LoggerFactory.getLogger(ListNodes.class);
-  protected final MessageRepository messageRepository;
+  protected final Repository repository;
 
   @Inject
   public ListNodes(
       @Property(CommandLineHandlerShutdownTimeout.class) int shutdownTimeoutInSeconds,
-      MessageRepository messageRepository) {
+      Repository repository) {
     super(shutdownTimeoutInSeconds);
-    this.messageRepository = messageRepository;
+
+    this.repository = repository;
   }
 
   @Override
-  public void run(final String... arguments) throws Exception {
-    for (Message message : messageRepository.findWithinThePastHour()) {
+  protected void doRun(final String... arguments) throws Exception {
+    final List<Message> messages =
+        (List<Message>) repository.query(new FindMessagesByTime(0, -1, 1, TimeUnit.HOURS));
+    for (Message message : messages) {
       if (message instanceof HeartbeatMessage) {
         final HeartbeatMessage heartbeatMessage = ((HeartbeatMessage) message);
 
-        //        final HeartbeatMessageHandlerService heartbeatMessageHandlerService = new
-        // HeartbeatMessageHandlerService();
+        //        final HeartbeatMessageCallable heartbeatMessageHandlerService = new
+        // HeartbeatMessageCallable();
         //        heartbeatMessageHandlerService.setEntity(heartbeatMessage);
         //        heartbeatMessageHandlerService.call();
 

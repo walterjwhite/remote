@@ -1,13 +1,13 @@
 package com.walterjwhite.remote.impl.plugins.file.handler;
 
 import com.walterjwhite.file.api.service.FileStorageService;
-import com.walterjwhite.queue.api.job.AbstractCallableJob;
 import com.walterjwhite.remote.impl.plugins.file.message.DeleteFileMessage;
 import java.io.IOException;
 import javax.inject.Inject;
 import org.apache.commons.io.FileUtils;
 
-public class DeleteFileMessageCallable extends AbstractCallableJob<DeleteFileMessage, Void> {
+// import com.walterjwhite.queue.api.queuedJob.AbstractJobRunnable;
+public class DeleteFileMessageCallable /* extends AbstractRunnable<DeleteFileMessage, Void>*/ {
   protected final FileStorageService fileStorageService;
 
   @Inject
@@ -28,15 +28,15 @@ public class DeleteFileMessageCallable extends AbstractCallableJob<DeleteFileMes
     }
   }
 
-  @Override
-  protected boolean isRetryable(Throwable thrown) {
-    return false;
-  }
-
-  @Override
-  public Void call() throws Exception {
-    deleteFile(entity);
-
-    return null;
-  }
+  //  @Override
+  //  protected boolean isRetryable(Throwable thrown) {
+  //    return false;
+  //  }
+  //
+  //  @Override
+  //  public Void call() throws Exception {
+  //    deleteFile(entity);
+  //
+  //    return null;
+  //  }
 }

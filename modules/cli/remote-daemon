@@ -10,4 +10,4 @@ fi
 mkdir -p /var/log/remote
 
 reset
-java $_options -jar target/cli-0.1-SNAPSHOT-shaded.jar -NodeId $(./remote-get-nodeid) -AmazonAccessKeyId AKIAJ47KDPNKYBYZHVZA -AmazonSecretAccessKey "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"
+java $_options -jar target/cli-0.1-SNAPSHOT-shaded.jar -NodeId $(./remote-get-nodeid) -AmazonAccessKeyId $(cat amazon.access.key.secret) -AmazonSecretAccessKey $(cat amazon.secret.access.key.secret)

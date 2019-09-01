@@ -1,27 +1,23 @@
 package com.walterjwhite.remote.plugins.shell;
 
-import com.walterjwhite.job.api.model.JobExecution;
-import com.walterjwhite.queue.api.job.CallableJob;
+// import com.walterjwhite.queuedJob.api.model.JobExecution;
+// import com.walterjwhite.queue.api.queuedJob.CallableJob;
+
 import com.walterjwhite.remote.api.service.MessageWriterService;
 import com.walterjwhite.remote.impl.handler.AbstractMessageHandler;
 import com.walterjwhite.shell.api.model.CommandError;
 import com.walterjwhite.shell.api.model.CommandOutput;
-import com.walterjwhite.shell.api.model.ShellCommand;
 import com.walterjwhite.shell.api.service.ShellExecutionService;
 import java.util.List;
 import javax.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ExecuteCommandMessageHandlerService extends AbstractMessageHandler
-    implements CallableJob<ExecuteCommandMessage, Void> {
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(ExecuteCommandMessageHandlerService.class);
+/*implements CallableJob<ExecuteCommandMessage, Void>*/ {
 
   protected final ShellExecutionService shellExecutionService;
 
   protected ExecuteCommandMessage executeCommandMessage;
-  protected JobExecution jobExecution;
+  //  protected JobExecution jobExecution;
 
   @Inject
   public ExecuteCommandMessageHandlerService(
@@ -58,59 +54,45 @@ public class ExecuteCommandMessageHandlerService extends AbstractMessageHandler
     return (executeCommandMessage.getCommand());
   }
 
-  @Override
-  public void onSuccess() {}
-
-  @Override
-  public void onError(Throwable thrown) {}
-
-  @Override
-  public void setJobExecution(JobExecution jobExecution) {
-    this.jobExecution = jobExecution;
-  }
-
-  @Override
-  public void setEntity(ExecuteCommandMessage entity) {
-    this.executeCommandMessage = entity;
-  }
-
-  @Override
-  public ExecuteCommandMessage getEntity() {
-    return executeCommandMessage;
-  }
-
-  @Override
-  public Void call() throws Exception {
-    try {
-      ShellCommand shellCommand =
-          new ShellCommand().withCommandLine(getArguments(executeCommandMessage)).withTimeout(10);
-      shellExecutionService.run(shellCommand);
-
-      for (CommandOutput commandOutput : shellCommand.getOutputs()) {
-        LOGGER.debug("response (output):" + commandOutput.getOutput());
-      }
-      for (CommandError commandOutput : shellCommand.getErrors()) {
-        LOGGER.debug("response (error):" + commandOutput.getOutput());
-      }
-
-      LOGGER.debug("response (returnCode):" + shellCommand.getReturnCode());
-
-      if (executeCommandMessage.isCaptureResponse()) {
-        reply(
-            executeCommandMessage,
-            new CommandOutputMessage(
-                executeCommandMessage.getSender(),
-                executeCommandMessage.getTimeToLive(),
-                executeCommandMessage,
-                getOutput(shellCommand.getOutputs()),
-                getError(shellCommand.getErrors()),
-                shellCommand.getReturnCode()));
-      }
-    } catch (Exception e) {
-      LOGGER.error("Error occurred during execution", e);
-      throw (e);
-    }
-
-    return null;
-  }
+  //  @Override
+  //  public void onSuccess() {}
+  //
+  //  @Override
+  //  public void onError(Throwable thrown) {}
+  //
+  //  @Override
+  //  public void setJobExecution(JobExecution jobExecution) {
+  //    this.jobExecution = jobExecution;
+  //  }
+  //
+  //  @Override
+  //  public void setEntity(ExecuteCommandMessage entity) {
+  //    this.executeCommandMessage = entity;
+  //  }
+  //
+  //  @Override
+  //  public ExecuteCommandMessage getEntity() {
+  //    return executeCommandMessage;
+  //  }
+  //
+  //  @Override
+  //  public Void call() throws Exception {
+  //    ShellCommand shellCommand =
+  //        new ShellCommand().withCommandLine(getArguments(executeCommandMessage)).withTimeout(10);
+  //    shellExecutionService.run(shellCommand);
+  //
+  //    if (executeCommandMessage.isCaptureResponse()) {
+  //      reply(
+  //          executeCommandMessage,
+  //          new CommandOutputMessage(
+  //              executeCommandMessage.getSender(),
+  //              executeCommandMessage.getTimeToLive(),
+  //              executeCommandMessage,
+  //              getOutput(shellCommand.getOutputs()),
+  //              getError(shellCommand.getErrors()),
+  //              shellCommand.getReturnCode()));
+  //    }
+  //
+  //    return null;
+  //  }
 }

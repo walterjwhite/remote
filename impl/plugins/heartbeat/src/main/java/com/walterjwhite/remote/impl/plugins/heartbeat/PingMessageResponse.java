@@ -4,17 +4,18 @@ import com.walterjwhite.remote.api.model.message.Message;
 import com.walterjwhite.shell.api.model.ping.PingRequest;
 import com.walterjwhite.shell.api.model.ping.PingResponse;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString(doNotUseGetters = true, callSuper = true)
+// @PersistenceCapable
 @Entity
 public class PingMessageResponse extends Message {
-  @ManyToOne(optional = false)
-  @JoinColumn
   protected PingRequest pingRequest;
 
-  @ManyToOne(optional = false)
-  @JoinColumn
   protected PingResponse pingResponse;
 
   public PingMessageResponse(PingRequest pingRequest, PingResponse pingResponse) {
@@ -25,21 +26,5 @@ public class PingMessageResponse extends Message {
 
   public PingMessageResponse() {
     super();
-  }
-
-  public PingRequest getPingRequest() {
-    return pingRequest;
-  }
-
-  public void setPingRequest(PingRequest pingRequest) {
-    this.pingRequest = pingRequest;
-  }
-
-  public PingResponse getPingResponse() {
-    return pingResponse;
-  }
-
-  public void setPingResponse(PingResponse pingResponse) {
-    this.pingResponse = pingResponse;
   }
 }

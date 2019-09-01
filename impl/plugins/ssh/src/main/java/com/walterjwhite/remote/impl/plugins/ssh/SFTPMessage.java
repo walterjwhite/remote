@@ -3,38 +3,16 @@ package com.walterjwhite.remote.impl.plugins.ssh;
 import com.walterjwhite.remote.api.model.message.Message;
 import com.walterjwhite.ssh.api.model.sftp.SFTPTransfer;
 import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /** Execute a sshCommand on a remote server. */
+@Getter
+@Setter
+@ToString(doNotUseGetters = true, callSuper = true)
+// @PersistenceCapable
 @Entity
 public class SFTPMessage extends Message {
-  /*@ManyToOne @JoinColumn*/ protected SFTPTransfer transfer;
-
-  public SFTPTransfer getTransfer() {
-    return transfer;
-  }
-
-  public void setTransfer(SFTPTransfer transfer) {
-    this.transfer = transfer;
-  }
-
-  @Override
-  public String toString() {
-    return "SFTPMessage{"
-        + "transfer="
-        + transfer
-        + ", recipients="
-        + recipients
-        + ", sender="
-        + sender
-        + ", dateCreated="
-        + dateCreated
-        + ", dateSent="
-        + dateSent
-        + ", timeToLive="
-        + timeToLive
-        + ", token='"
-        + token
-        + '\''
-        + '}';
-  }
+  protected SFTPTransfer transfer;
 }

@@ -5,7 +5,15 @@ import com.walterjwhite.remote.api.model.Client;
 import com.walterjwhite.remote.modules.cli.enumeration.RemoteOperatingMode;
 import java.time.LocalDateTime;
 import javax.persistence.*;
+import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+@NoArgsConstructor
+@Data
+@ToString(doNotUseGetters = true)
+// @PersistenceCapable
 @Entity
 public class RemoteConfiguration extends AbstractEntity {
   @ManyToOne(optional = false)
@@ -15,6 +23,7 @@ public class RemoteConfiguration extends AbstractEntity {
   @Column(nullable = false, updatable = false)
   protected LocalDateTime dateTime = LocalDateTime.now();
 
+  @EqualsAndHashCode.Exclude
   @Column
   @Enumerated(EnumType.STRING)
   protected RemoteOperatingMode remoteOperatingMode;
@@ -25,51 +34,5 @@ public class RemoteConfiguration extends AbstractEntity {
     super();
     this.client = client;
     this.remoteOperatingMode = remoteOperatingMode;
-  }
-
-  public RemoteConfiguration() {
-    super();
-  }
-
-  public Client getClient() {
-    return client;
-  }
-
-  public void setClient(Client client) {
-    this.client = client;
-  }
-
-  public LocalDateTime getDateTime() {
-    return dateTime;
-  }
-
-  public void setDateTime(LocalDateTime dateTime) {
-    this.dateTime = dateTime;
-  }
-
-  public void setRemoteOperatingMode(RemoteOperatingMode remoteOperatingMode) {
-    this.remoteOperatingMode = remoteOperatingMode;
-  }
-
-  public RemoteOperatingMode getRemoteOperatingMode() {
-    return remoteOperatingMode;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    RemoteConfiguration that = (RemoteConfiguration) o;
-
-    if (client != null ? !client.equals(that.client) : that.client != null) return false;
-    return dateTime != null ? dateTime.equals(that.dateTime) : that.dateTime == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = client != null ? client.hashCode() : 0;
-    result = 31 * result + (dateTime != null ? dateTime.hashCode() : 0);
-    return result;
   }
 }

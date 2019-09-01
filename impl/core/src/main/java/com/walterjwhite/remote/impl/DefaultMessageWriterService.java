@@ -1,23 +1,19 @@
 package com.walterjwhite.remote.impl;
 
 import com.google.common.eventbus.EventBus;
-import com.google.inject.persist.Transactional;
-import com.walterjwhite.job.api.enumeration.QueueType;
-import com.walterjwhite.job.api.model.Queue;
 import com.walterjwhite.job.external.queue.api.ExternalQueueService;
+import com.walterjwhite.queue.api.enumeration.QueueType;
+import com.walterjwhite.queue.api.model.Queue;
 import com.walterjwhite.remote.api.model.Client;
 import com.walterjwhite.remote.api.model.message.Message;
-import com.walterjwhite.remote.api.service.MessageRepository;
+import com.walterjwhite.remote.api.repository.MessageRepository;
 import com.walterjwhite.remote.api.service.MessageWriterService;
 import com.walterjwhite.remote.impl.provider.ClientProvider;
 import javax.inject.Inject;
 import javax.inject.Provider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.transaction.Transactional;
 
 public class DefaultMessageWriterService implements MessageWriterService {
-  private static final Logger LOGGER = LoggerFactory.getLogger(DefaultMessageWriterService.class);
-
   protected final ExternalQueueService externalQueueService;
   protected final EventBus eventBus;
   protected final Provider<MessageRepository> messageRepositoryProvider;
@@ -62,14 +58,15 @@ public class DefaultMessageWriterService implements MessageWriterService {
     }
 
     for (Client client : clients) {
-      Queue queue = new Queue(client.getId(), QueueType.Self);
+      Queue queue = new Queue(Integer.toString(client.getId()), QueueType.Self);
       externalQueueService.write(queue, message);
     }
   }
 
   @Transactional
   protected Message doPersist(Message message) {
-    //    messageRepositoryProvider.get().persist(message);
-    return (messageRepositoryProvider.get().merge(message));
+    return (messageRepositoryProvider
+        .get()
+        .create(message)); // TODO: differentiate between create and update
   }
 }

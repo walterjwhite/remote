@@ -1,8 +1,9 @@
 package com.walterjwhite.remote.impl.service;
 
-import com.walterjwhite.encryption.api.service.DigestService;
+import com.walterjwhite.encryption.service.DigestService;
 import com.walterjwhite.remote.api.service.ClientIdentifierService;
 import com.walterjwhite.shell.api.model.Node;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
@@ -28,7 +29,8 @@ public class DefaultClientIdentifierService implements ClientIdentifierService {
   @Override
   public String get(Node node) throws IOException, NoSuchAlgorithmException {
     return digestService
-        .computeSignature(node.getUuid().getBytes(Charset.defaultCharset()))
+        .computeSignature(
+            new ByteArrayInputStream(node.getUuid().getBytes(Charset.defaultCharset())))
         .substring(55);
   }
 

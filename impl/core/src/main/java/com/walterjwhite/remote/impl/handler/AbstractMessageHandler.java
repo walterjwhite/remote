@@ -3,8 +3,6 @@ package com.walterjwhite.remote.impl.handler;
 import com.walterjwhite.remote.api.model.Client;
 import com.walterjwhite.remote.api.model.message.Message;
 import com.walterjwhite.remote.api.service.MessageWriterService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * TODO: alternatively rather than use a handler, provide a super class that responds to events
@@ -12,8 +10,6 @@ import org.slf4j.LoggerFactory;
  * again
  */
 public abstract class AbstractMessageHandler {
-  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractMessageHandler.class);
-
   protected final MessageWriterService messageWriterService;
 
   protected AbstractMessageHandler(MessageWriterService messageWriterService) {

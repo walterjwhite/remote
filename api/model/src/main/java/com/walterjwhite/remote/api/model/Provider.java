@@ -6,7 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString(doNotUseGetters = true, callSuper = true)
+@NoArgsConstructor
+// @PersistenceCapable
 @Entity
 public class Provider extends AbstractNamedEntity {
   @Column
@@ -15,18 +24,6 @@ public class Provider extends AbstractNamedEntity {
 
   public Provider(String moduleClassName, ProviderType providerType) {
     super(moduleClassName);
-    this.providerType = providerType;
-  }
-
-  public Provider() {
-    super();
-  }
-
-  public ProviderType getProviderType() {
-    return providerType;
-  }
-
-  public void setProviderType(ProviderType providerType) {
     this.providerType = providerType;
   }
 }

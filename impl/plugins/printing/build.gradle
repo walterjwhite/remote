@@ -1,0 +1,6 @@
+group = 'com.walterjwhite.modules.remote.impl.plugins'
+description = 'Remote - impl - plugins - printing'
+dependencies {
+  compile project(':infrastructure:datastore:api:service')
+  runtime project(':infrastructure:datastore:modules:print:impl')
+}

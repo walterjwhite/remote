@@ -12,8 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
 /**
@@ -21,9 +19,6 @@ import org.yaml.snakeyaml.Yaml;
  * Monitor application for all other errors.
  */
 public class Dashboard {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Dashboard.class);
-
   //  private final ScheduledThreadPoolExecutor executorService;
   protected final JobExecutorService jobExecutorService;
   private final Properties configuration = new Properties();

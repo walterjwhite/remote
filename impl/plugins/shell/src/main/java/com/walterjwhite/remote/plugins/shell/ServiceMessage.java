@@ -5,16 +5,22 @@ import com.walterjwhite.remote.api.model.message.Message;
 import com.walterjwhite.shell.api.enumeration.ServiceAction;
 import com.walterjwhite.shell.api.model.Service;
 import java.util.Set;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString(doNotUseGetters = true, callSuper = true)
+@NoArgsConstructor
+// @PersistenceCapable
 @Entity
 public class ServiceMessage extends Message {
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn
+
   protected Service service;
 
-  @Enumerated(EnumType.STRING)
-  @Column
   protected ServiceAction serviceAction;
 
   public ServiceMessage(
@@ -31,49 +37,5 @@ public class ServiceMessage extends Message {
 
     this.service = service;
     this.serviceAction = serviceAction;
-  }
-
-  /** Required for deserialization */
-  public ServiceMessage() {
-    super();
-  }
-
-  public Service getService() {
-    return service;
-  }
-
-  public void setService(Service service) {
-    this.service = service;
-  }
-
-  public ServiceAction getServiceAction() {
-    return serviceAction;
-  }
-
-  public void setServiceAction(ServiceAction serviceAction) {
-    this.serviceAction = serviceAction;
-  }
-
-  @Override
-  public String toString() {
-    return "ServiceMessage{"
-        + "service="
-        + service
-        + ", serviceAction="
-        + serviceAction
-        + ", recipients="
-        + recipients
-        + ", sender="
-        + sender
-        + ", dateCreated="
-        + dateCreated
-        + ", dateSent="
-        + dateSent
-        + ", timeToLive="
-        + timeToLive
-        + ", token='"
-        + token
-        + '\''
-        + '}';
   }
 }

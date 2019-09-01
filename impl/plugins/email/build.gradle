@@ -1,0 +1,7 @@
+group = 'com.walterjwhite.modules.remote.impl.plugins'
+description = 'Remote - impl - plugins - email'
+dependencies {
+  compile project(':infrastructure:datastore:api:service')
+  compile project(':infrastructure:datastore:modules:email:impl')
+  compile project(':infrastructure:datastore:modules:javamail')
+}

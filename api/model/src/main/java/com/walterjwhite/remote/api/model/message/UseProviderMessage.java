@@ -2,25 +2,17 @@ package com.walterjwhite.remote.api.model.message;
 
 import com.walterjwhite.remote.api.model.Provider;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString(doNotUseGetters = true, callSuper = true)
+// @PersistenceCapable
+@AllArgsConstructor
 @Entity
 public class UseProviderMessage extends Message {
-  @ManyToOne(optional = false)
-  @JoinColumn(nullable = false, updatable = false)
   protected Provider provider;
-
-  public UseProviderMessage(Provider provider) {
-    super();
-    this.provider = provider;
-  }
-
-  public Provider getProvider() {
-    return provider;
-  }
-
-  public void setProvider(Provider provider) {
-    this.provider = provider;
-  }
 }

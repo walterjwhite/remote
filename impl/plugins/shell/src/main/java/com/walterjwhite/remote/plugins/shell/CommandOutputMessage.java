@@ -2,17 +2,24 @@ package com.walterjwhite.remote.plugins.shell;
 
 import com.walterjwhite.remote.api.model.Client;
 import com.walterjwhite.remote.api.model.message.Message;
-import com.walterjwhite.serialization.api.annotation.PrivateField;
 import java.util.Set;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString(doNotUseGetters = true, callSuper = true)
+@NoArgsConstructor
+// @PersistenceCapable
 @Entity
 public class CommandOutputMessage extends Message {
-  @OneToOne @JoinColumn @PrivateField protected ExecuteCommandMessage executeCommandMessage;
-
-  @Column protected String stdout;
-  @Column protected String stderr;
-  @Column protected int returnCode;
+  protected ExecuteCommandMessage executeCommandMessage;
+  protected String stdout;
+  protected String stderr;
+  protected int returnCode;
 
   public CommandOutputMessage(
       Set<Client> recipients,
@@ -40,71 +47,5 @@ public class CommandOutputMessage extends Message {
     this.stdout = stdout;
     this.stderr = stderr;
     this.returnCode = returnCode;
-  }
-
-  /** Required for deserialization. */
-  public CommandOutputMessage() {
-    super();
-  }
-
-  public ExecuteCommandMessage getExecuteCommandMessage() {
-    return executeCommandMessage;
-  }
-
-  public void setExecuteCommandMessage(ExecuteCommandMessage executeCommandMessage) {
-    this.executeCommandMessage = executeCommandMessage;
-  }
-
-  public String getStdout() {
-    return stdout;
-  }
-
-  public void setStdout(String stdout) {
-    this.stdout = stdout;
-  }
-
-  public String getStderr() {
-    return stderr;
-  }
-
-  public void setStderr(String stderr) {
-    this.stderr = stderr;
-  }
-
-  public int getReturnCode() {
-    return returnCode;
-  }
-
-  public void setReturnCode(int returnCode) {
-    this.returnCode = returnCode;
-  }
-
-  @Override
-  public String toString() {
-    return "CommandOutputMessage{"
-        + "executeCommandMessage="
-        + executeCommandMessage
-        + ", stdout='"
-        + stdout
-        + '\''
-        + ", stderr='"
-        + stderr
-        + '\''
-        + ", returnCode="
-        + returnCode
-        + ", recipients="
-        + recipients
-        + ", sender="
-        + sender
-        + ", dateCreated="
-        + dateCreated
-        + ", dateSent="
-        + dateSent
-        + ", timeToLive="
-        + timeToLive
-        + ", token='"
-        + token
-        + '\''
-        + '}';
   }
 }

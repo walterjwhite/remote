@@ -19,13 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class DashboardFrame extends JFrame implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DashboardFrame.class);
-
   protected final List<AbstractMonitor> monitors = new ArrayList<>();
   protected final List<Component> monitorComponents = new ArrayList<Component>();
 
@@ -107,7 +102,6 @@ public class DashboardFrame extends JFrame implements Runnable {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      LOGGER.debug("mouse clicked");
       /*
               final TableRowSorter tableRowSorter = (TableRowSorter) table.getRowSorter();
               final RowFilter rowFilter = tableRowSorter.setRowFilter(filter);

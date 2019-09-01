@@ -5,6 +5,7 @@ package com.walterjwhite.remote.modules.cli.module;
 import com.walterjwhite.file.providers.amazon.service.AmazonS3FileStorageModule;
 import com.walterjwhite.google.guice.cli.AbstractCommandLineModule;
 import com.walterjwhite.ip.impl.PublicIPLookupModule;
+import com.walterjwhite.property.api.PropertyManager;
 import com.walterjwhite.queue.providers.amazon.sqs.service.AmazonSQSQueueModule;
 import com.walterjwhite.remote.impl.module.RemoteModule;
 import com.walterjwhite.remote.impl.plugins.file.FileTransferModule;
@@ -12,14 +13,14 @@ import com.walterjwhite.remote.impl.plugins.heartbeat.HeartbeatModule;
 import com.walterjwhite.remote.impl.plugins.ssh.SSHMessageModule;
 import com.walterjwhite.remote.modules.cli.enumeration.RemoteOperatingMode;
 import com.walterjwhite.remote.plugins.shell.ShellMessageModule;
+import com.walterjwhite.scm.providers.jgit.SSHModule;
 import com.walterjwhite.shell.impl.ShellModule;
-import com.walterjwhite.ssh.impl.SSHModule;
 import org.reflections.Reflections;
 
 public class RemoteCommandLineModule extends AbstractCommandLineModule {
 
-  public RemoteCommandLineModule(Reflections reflections) {
-    super(reflections, RemoteOperatingMode.class);
+  public RemoteCommandLineModule(PropertyManager propertyManager, Reflections reflections) {
+    super(propertyManager, reflections, RemoteOperatingMode.class);
   }
 
   /**
@@ -27,13 +28,13 @@ public class RemoteCommandLineModule extends AbstractCommandLineModule {
    * ...
    */
   @Override
-  protected void doConfigure() {
+  protected void doCliConfigure() {
     // TODO: automatically install modules based on configuration
-    // TODO: if operating mode is daemon, then install normal job queue
-    // else, install no-op job queue
+    // TODO: if operating mode is daemon, then install normal queuedJob queue
+    // else, install no-op queuedJob queue
 
     // TODO: use command line module to set jpaUnit
-    install(new RemoteModule());
+    install(new RemoteModule(propertyManager, reflections));
     install(new PublicIPLookupModule());
     install(new ShellModule());
 

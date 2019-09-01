@@ -40,7 +40,6 @@
 //
 // public String computeMessageToken(AbstractMessage message)
 //      throws IOException, NoSuchAlgorithmException {
-//    LOGGER.debug("client:" + client);
 //
 //    ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //    baos.write(client.getInitializationVector());

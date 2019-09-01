@@ -1,9 +1,12 @@
 package com.walterjwhite.remote.modules.cli.enumeration;
 
-import com.walterjwhite.google.guice.cli.property.OperatingMode;
-import com.walterjwhite.google.guice.cli.service.AbstractCommandLineHandler;
-import com.walterjwhite.google.guice.property.property.DefaultValue;
-import com.walterjwhite.remote.modules.cli.handler.*;
+import com.walterjwhite.inject.cli.property.OperatingMode;
+import com.walterjwhite.inject.cli.service.AbstractCommandLineHandler;
+import com.walterjwhite.property.api.annotation.DefaultValue;
+import com.walterjwhite.remote.modules.cli.handler.ListNodes;
+import com.walterjwhite.remote.modules.cli.handler.MessageReader;
+import com.walterjwhite.remote.modules.cli.handler.MessageWriter;
+import com.walterjwhite.remote.modules.cli.handler.RemoteDaemon;
 
 // TODO: while this works, this is a bad practice.
 // I would like to automatically start any services that are needed

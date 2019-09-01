@@ -5,7 +5,7 @@ import com.google.inject.AbstractModule;
 public class HeartbeatModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(HeartbeatMessageHandlerService.class);
+    bind(HeartbeatMessageCallable.class);
     bind(ClientHeartbeatService.class);
   }
 }

@@ -1,20 +1,17 @@
 package com.walterjwhite.remote.modules.cli.handler;
 
-import com.walterjwhite.google.guice.cli.property.CommandLineHandlerShutdownTimeout;
-import com.walterjwhite.google.guice.cli.service.AbstractCommandLineHandler;
-import com.walterjwhite.google.guice.property.property.Property;
+import com.walterjwhite.inject.cli.property.CommandLineHandlerShutdownTimeout;
+import com.walterjwhite.inject.cli.service.AbstractCommandLineHandler;
+import com.walterjwhite.property.impl.annotation.Property;
 import com.walterjwhite.remote.api.model.message.Message;
-import com.walterjwhite.remote.api.service.MessageRepository;
+import com.walterjwhite.remote.api.repository.MessageRepository;
 import javax.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * List all active nodes within the past 5 minutes. IE. checks for heartbeats less than 5 minutes
  * old.
  */
 public class MessageReader extends AbstractCommandLineHandler {
-  private static final Logger LOGGER = LoggerFactory.getLogger(ListNodes.class);
   protected final MessageRepository messageRepository;
 
   @Inject
@@ -26,9 +23,13 @@ public class MessageReader extends AbstractCommandLineHandler {
   }
 
   @Override
-  public void run(final String... arguments) throws Exception {
+  protected void doRun(final String... arguments) {
     for (Message message : messageRepository.findWithinThePastHour()) {
-      System.out.println("message:" + message);
+      displayMessage(message);
     }
+  }
+
+  protected void displayMessage(Message message) {
+    System.out.println("message:" + message);
   }
 }

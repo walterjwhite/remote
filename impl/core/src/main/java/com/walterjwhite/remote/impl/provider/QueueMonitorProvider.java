@@ -1,31 +1,37 @@
 package com.walterjwhite.remote.impl.provider;
 
-import com.walterjwhite.job.api.enumeration.QueueType;
-import com.walterjwhite.job.api.model.Queue;
-import com.walterjwhite.job.api.model.QueueMonitor;
+// import com.walterjwhite.queuedJob.api.enumeration.QueueType;
+// import com.walterjwhite.queuedJob.api.model.Queue;
+// import com.walterjwhite.queuedJob.api.model.QueueMonitor;
+
 import com.walterjwhite.remote.api.model.Client;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-public class QueueMonitorProvider implements Provider<QueueMonitor> {
+public class QueueMonitorProvider implements Provider<Object /*QueueMonitor*/> {
   protected final Client client;
-  protected final QueueMonitor queueMonitor;
+  //  protected final QueueMonitor queueMonitor;
 
   @Inject
   public QueueMonitorProvider(Client client) {
     super();
     this.client = client;
 
-    Queue allQueue = new Queue("all", QueueType.All);
-    Queue selfQueue = new Queue(client.getId(), QueueType.Self);
-
-    queueMonitor = new QueueMonitor(client.getId());
-    queueMonitor.getQueues().add(allQueue);
-    queueMonitor.getQueues().add(selfQueue);
+    //    Queue allQueue = new Queue("all", QueueType.All);
+    //    Queue selfQueue = new Queue(Integer.toString(client.getId()), QueueType.Self);
+    //
+    //    queueMonitor = new QueueMonitor(Integer.toString(client.getId()));
+    //    queueMonitor.getQueues().add(allQueue);
+    //    queueMonitor.getQueues().add(selfQueue);
   }
 
+  //  @Override
+  //  public QueueMonitor get() {
+  //    return queueMonitor;
+  //  }
+
   @Override
-  public QueueMonitor get() {
-    return queueMonitor;
+  public Object get() {
+    return null;
   }
 }

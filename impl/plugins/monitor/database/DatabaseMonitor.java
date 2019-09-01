@@ -15,15 +15,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
 /** result can be: a single value a row with many columns (and column headers) */
+@Data
+@ToString(doNotUseGetters = true)
 public class DatabaseMonitor extends AbstractMonitor<DataTable> {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseMonitor.class);
-
   protected final Connection connection;
 
   /** SQL file containing the query to run */
@@ -31,22 +28,6 @@ public class DatabaseMonitor extends AbstractMonitor<DataTable> {
 
   /** Parameters to the query above. */
   protected String[] parameters;
-
-  public String getQueryFile() {
-    return queryFile;
-  }
-
-  public void setQueryFile(String queryFile) {
-    this.queryFile = queryFile;
-  }
-
-  public String[] getParameters() {
-    return parameters;
-  }
-
-  public void setParameters(String[] parameters) {
-    this.parameters = parameters;
-  }
 
   /*
   protected DatabaseMonitor(int refreshInterval, final String[] columnNames) throws ClassNotFoundException, SQLException, IOException {
@@ -59,6 +40,8 @@ public class DatabaseMonitor extends AbstractMonitor<DataTable> {
 
   }
    */
+
+  // TODO: this does NOT look right, this looks like service code
   public DatabaseMonitor() throws ClassNotFoundException, SQLException, IOException {
     super(new DataTable());
 
@@ -87,19 +70,7 @@ public class DatabaseMonitor extends AbstractMonitor<DataTable> {
   }
 
   protected String getQuery() throws IOException {
-    final FileInputStream inputStream = new FileInputStream(new File(queryFile));
-    final StringBuilder buffer = new StringBuilder();
-
-    while (true) {
-      int read = inputStream.read();
-      if (read == -1) {
-        break;
-      }
-
-      buffer.append((char) read);
-    }
-
-    return (buffer.toString());
+    return IOUtils.toString(new BufferedInputStream(new FileInputStream(new File(queryFile))));
   }
 
   @Override
@@ -119,11 +90,9 @@ public class DatabaseMonitor extends AbstractMonitor<DataTable> {
           result.add(row);
         }
       }
-    } catch (Exception e) {
-      LOGGER.error("Error fetching results", e);
-    }
 
-    return (null);
+      return (null);
+    }
   }
 
   protected void setupColumnNames(final ResultSet resultSet) throws SQLException {
@@ -137,10 +106,5 @@ public class DatabaseMonitor extends AbstractMonitor<DataTable> {
 
       result.setColumnNames(columnNames);
     }
-  }
-
-  @Override
-  public String toString() {
-    return "DatabaseMonitor";
   }
 }

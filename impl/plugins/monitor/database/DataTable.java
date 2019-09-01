@@ -2,25 +2,17 @@ package com.walterjwhite.remote.impl.service.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
+import lombok.ToString;
 
 /** TODO: support more complex data types rather than just strings. */
+@Data
+@ToString(doNotUseGetters = true)
 public class DataTable {
 
   protected List<String> columnNames;
 
   protected final List<List<String>> rows = new ArrayList<List<String>>();
-
-  public List<String> getColumnNames() {
-    return columnNames;
-  }
-
-  public void setColumnNames(List<String> columnNames) {
-    this.columnNames = columnNames;
-  }
-
-  public List<List<String>> getRows() {
-    return rows;
-  }
 
   public void clear() {
     rows.clear();

@@ -1,22 +1,21 @@
 package com.walterjwhite.remote.impl.plugins.browser;
 
 import com.walterjwhite.browser.api.service.BrowserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.walterjwhite.queue.api.job.AbstractRunnable;
+import com.walterjwhite.queue.event.annotation.SubscribeTo;
 
-public class BrowserScriptMessageHandlerService {
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(BrowserScriptMessageHandlerService.class);
-
+@SubscribeTo(eventClass = BrowserScriptMessage.class)
+public class BrowserScriptMessageHandlerService extends AbstractRunnable {
   protected final BrowserService browserService;
 
   public BrowserScriptMessageHandlerService(BrowserService browserService) {
     super();
     this.browserService = browserService;
   }
-  //
-  //  @Subscribe
-  //  public void process(BrowserScriptMessage browserScriptMessage) {
-  //    //browserService.get();
-  //  }
+
+  @Override
+  protected void doCall() throws Exception {
+    //    //browserService.get();
+
+  }
 }

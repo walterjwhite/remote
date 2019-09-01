@@ -1,0 +1,7 @@
+group = 'com.walterjwhite.modules.remote.impl.plugins'
+description = 'Remote - impl - plugins - heartbeat'
+dependencies {
+  compile project(':infrastructure:datastore:api:model')
+  compile project(':infrastructure:datastore:api:service')
+  compile project(':infrastructure:datastore:modules:shell:impl')
+}
