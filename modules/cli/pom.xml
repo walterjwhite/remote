@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.walterjwhite.java.modules.remote</groupId>
     <artifactId>modules</artifactId>
-    <version>0.0.15-SNAPSHOT</version>
+    <version>0.0.17-SNAPSHOT</version>
   </parent>
   <groupId>com.walterjwhite.java.modules.remote.modules</groupId>
   <artifactId>cli</artifactId>
-  <version>0.0.15-SNAPSHOT</version>
+  <version>0.0.17-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Remote - modules - CLI</name>
   <dependencies>
     <dependency>
       <groupId>com.walterjwhite.java.modules.remote.impl</groupId>
       <artifactId>core</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <!-- Plugins -->
     <!--<dependency>-->
@@ -34,27 +34,27 @@
     <dependency>
       <groupId>com.walterjwhite.java.modules.remote.impl.plugins</groupId>
       <artifactId>file-transfer</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.modules.remote.impl.plugins</groupId>
       <artifactId>heartbeat</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.modules.remote.impl.plugins</groupId>
       <artifactId>shell</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.modules.remote.impl.plugins</groupId>
       <artifactId>ssh</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.walterjwhite.java.modules.ip</groupId>
       <artifactId>impl</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <!--<dependency>-->
     <!--<groupId>com.walterjwhite.java.modules.queue</groupId>-->
@@ -72,7 +72,7 @@
     <dependency>
       <groupId>com.walterjwhite.java.modules.file.providers.local</groupId>
       <artifactId>impl</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <!--
         <dependency>
@@ -84,7 +84,7 @@
     <dependency>
       <groupId>com.walterjwhite.java.modules.file.providers</groupId>
       <artifactId>amazon</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
     </dependency>
     <!--<dependency>-->
     <!--<groupId>com.walterjwhite.java.modules.queue.modules.external.providers</groupId>-->
@@ -95,7 +95,7 @@
     <dependency>
       <groupId>com.walterjwhite.java.dependencies</groupId>
       <artifactId>p6spy</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.17-SNAPSHOT</version>
       <type>pom</type>
       <scope>runtime</scope>
     </dependency>
@@ -130,7 +130,7 @@
         <dependency>
           <groupId>com.walterjwhite.java.dependencies</groupId>
           <artifactId>h2</artifactId>
-          <version>0.0.15-SNAPSHOT</version>
+          <version>0.0.17-SNAPSHOT</version>
           <type>pom</type>
         </dependency>
       </dependencies>
@@ -141,7 +141,7 @@
         <dependency>
           <groupId>com.walterjwhite.java.dependencies</groupId>
           <artifactId>postgresql</artifactId>
-          <version>0.0.15-SNAPSHOT</version>
+          <version>0.0.17-SNAPSHOT</version>
           <type>pom</type>
         </dependency>
       </dependencies>

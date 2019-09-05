@@ -37,7 +37,7 @@ public class FileTransferPreSendMessageJobRunnable extends AbstractRunnable
    * Factor in the size of the file for the timeout here ... Assumption, 1024 kB / s (1kB /
    * millisecond) / (1 MB / s)
    *
-   * @return
+   * @return allowed execution duration
    */
   @Override
   public Duration getAllowedExecutionDuration() {
