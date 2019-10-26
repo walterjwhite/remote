@@ -61,7 +61,7 @@ public class DashboardFrame extends JFrame implements Runnable {
       return (addTable(container, monitor));
     }
 
-    throw (new RuntimeException("Result is not supported:" + monitor.getResult()));
+    throw new RuntimeException("Result is not supported:" + monitor.getResult());
   }
 
   /**

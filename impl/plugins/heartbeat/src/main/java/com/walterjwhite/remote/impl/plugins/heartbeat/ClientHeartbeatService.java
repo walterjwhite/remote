@@ -106,7 +106,7 @@ public class ClientHeartbeatService extends AbstractScheduledService {
               pingRequest,
               networkInterfaceServiceProvider.get().getNetworkInterfaceStatesForNode());
     } catch (SocketException e) {
-      throw (new RuntimeException("Error getting network interface information", e));
+      throw new RuntimeException("Error getting network interface information", e);
     }
 
     // just deliver to "all" queue
@@ -115,7 +115,7 @@ public class ClientHeartbeatService extends AbstractScheduledService {
       messageWriterService.write(heartbeatMessage);
 
     } catch (Exception e) {
-      throw (new RuntimeException("Error writing message", e));
+      throw new RuntimeException("Error writing message", e);
     }
   }
 

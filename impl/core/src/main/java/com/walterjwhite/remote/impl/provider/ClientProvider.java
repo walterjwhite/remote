@@ -69,7 +69,7 @@ public class ClientProvider implements Provider<Client> {
               new ClientIPAddressHistory(
                   client, new IPAddress(publicIPLookupService.getPublicIPAddress())));
     } catch (Exception e) {
-      throw (new RuntimeException("Unable to set IP Address history record", e));
+      throw new RuntimeException("Unable to set IP Address history record", e);
     }
 
     if (client.getInitializationVector() == null) {

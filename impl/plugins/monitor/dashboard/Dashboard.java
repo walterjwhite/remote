@@ -97,7 +97,7 @@ public class Dashboard {
         return (getField(monitorClass.getSuperclass(), fieldName));
       }
 
-      throw (e);
+      throw e;
     }
   }
 

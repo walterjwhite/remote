@@ -60,10 +60,10 @@
 //      throws IOException, NoSuchAlgorithmException {
 //    final String expectedToken = computeMessageToken(message);
 //    if (message.getToken() == null) {
-//      throw (new IllegalStateException("Token is null, but it should be populated."));
+//      throw new IllegalStateException("Token is null, but it should be populated."));
 //    }
 //    if (!message.getToken().equals(expectedToken)) {
-//      throw (new IllegalStateException("Token does not match expected token."));
+//      throw new IllegalStateException("Token does not match expected token."));
 //    }
 //  }
 //

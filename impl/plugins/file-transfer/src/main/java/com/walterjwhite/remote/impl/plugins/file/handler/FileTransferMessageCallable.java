@@ -21,8 +21,7 @@ public class FileTransferMessageCallable
       final java.io.File source = new java.io.File(fileTransferMessage.getFile().getSource());
       source.renameTo(target);
     } else {
-      throw (new IllegalStateException(
-          "Target (" + target.getAbsolutePath() + ") already exists."));
+      throw new IllegalStateException("Target (" + target.getAbsolutePath() + ") already exists.");
     }
   }
 

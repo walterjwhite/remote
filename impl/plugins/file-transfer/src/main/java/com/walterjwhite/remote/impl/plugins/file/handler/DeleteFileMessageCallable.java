@@ -23,8 +23,7 @@ public class DeleteFileMessageCallable /* extends AbstractRunnable<DeleteFileMes
     } else if (target.isFile()) {
       FileUtils.deleteQuietly(target);
     } else {
-      throw (new IllegalStateException(
-          "Target (" + target.getAbsolutePath() + ") already exists."));
+      throw new IllegalStateException("Target (" + target.getAbsolutePath() + ") already exists.");
     }
   }
 
