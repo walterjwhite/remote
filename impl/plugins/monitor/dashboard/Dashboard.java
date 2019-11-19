@@ -75,7 +75,7 @@ public class Dashboard {
           NoSuchFieldException {
     final Class monitorClass = Class.forName(monitorConfiguration.getClassName());
     final AbstractMonitor monitorInstance =
-        (AbstractMonitor) monitorClass.getConstructor().newInstance();
+        (AbstractMonitor) monitorClass.getConstructor().getDeclaredConstructor().newInstance();
 
     for (final String fieldName : monitorConfiguration.getProperties().keySet()) {
       set(
